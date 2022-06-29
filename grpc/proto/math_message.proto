@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package fullcycle;
+
+option go_package = "/pb";
+
+message Sum {
+    float a = 1;
+    float b = 2;
+}
+
+// exemplo basico
+message NewSumRequest {
+    Sum sum = 1;
+}
+
+message NewSumResponse {
+    float result = 1;
+}
+
+// sream
+message FibonacciRequest {
+    int32 n = 1;
+}
+
+message FibonacciResponse {
+    int32 result = 1;
+}
+
+
+service MathService {
+
+    // exemplo basico
+    rpc Sum (NewSumRequest) returns (NewSumResponse) {};
+
+    // sream
+    rpc Fibonacci(FibonacciRequest) returns (stream FibonacciResponse) {};
+}
